@@ -16,8 +16,12 @@ defmodule Xml do
     "<#{tag} />"
   end
 
-  def element(tag, attributes) do
-    attr_list = for {k, v} <- attributes, do: "#{k}=\"#{v}\""
+  def element(tag, attributes) when is_list(attributes) do
+    if not Keyword.keyword?(attributes) do
+      raise ArgumentError, message: "attributes must be keyword list"
+    end
+
+    attr_list = for {k, v} <- attributes, do: ~s[#{k}="#{v}"]
     Enum.join(["<#{tag}" | attr_list], " ") <> " />"
   end
 end
