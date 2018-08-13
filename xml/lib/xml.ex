@@ -18,7 +18,6 @@ defmodule Xml do
 
   def element(tag, attributes) do
     attr_list = for {k, v} <- attributes, do: "#{k}=\"#{v}\""
-    attr_code = Enum.join(attr_list, " ")
-    Enum.join(["<#{tag}", attr_code, "/>"], " ")
+    Enum.join(["<#{tag}" | attr_list], " ") <> " />"
   end
 end
