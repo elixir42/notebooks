@@ -9,10 +9,12 @@ defmodule LabZero do
   ## Examples
 
       iex> LabZero.hello
-      :world
+      "Hello, 世界!"
+      iex> LabZero.hello("Tina")
+      "Hello, Tina!"
 
   """
-  def hello do
-    :world
+  def hello(name \\ "世界") do
+    "Hello, #{name}!"
   end
 end
